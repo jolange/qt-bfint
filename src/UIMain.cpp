@@ -10,6 +10,7 @@ UIMain::UIMain():
 	QMainWindow()
 {
 	ui.setupUi(this);
+	ui.statusbar->showMessage("Ready");
 	//QString testSequence = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
 	QString testSequence = "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.";
 	ui.tbInput->setPlainText(testSequence);
@@ -24,9 +25,11 @@ UIMain::~UIMain(){}
 
 void UIMain::slotExecute()
 {
+	ui.statusbar->showMessage("Executing...");
 	ui.tbOutput->clear();
 	m_bfInt = BFInterpreter(ui.tbInput->toPlainText());
 	m_bfInt.interpret();
+	ui.statusbar->showMessage("Executing done. Ready");
 }
 
 void UIMain::slotPut(QChar c)

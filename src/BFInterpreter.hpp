@@ -5,13 +5,22 @@
 #include <QVector>
 #include <QString>
 
+/*!
+ * \class BFInterpreter
+ * Interprets BF-Sequences in QString-Format
+ */
 class BFInterpreter: public QObject
 {
 Q_OBJECT
 public:
+	/*! constructor
+	 *  \param bfSequence sequence to interpret
+	 */
 	BFInterpreter(QString bfSequence="");
+	//! copy-constructor
 	BFInterpreter& operator=(const BFInterpreter& that);
 	
+	//! actual interpreting
 	void interpret();
 	
 private:

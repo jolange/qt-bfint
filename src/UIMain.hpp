@@ -7,6 +7,10 @@
 
 #include <QMainWindow>
 
+/*!
+ * \class UIMain
+ * Main Window
+ */
 class UIMain: public QMainWindow
 {
 Q_OBJECT
