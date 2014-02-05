@@ -1,25 +1,35 @@
 #ifndef BFINTERPRETER_HPP_
 #define BFINTERPRETER_HPP_
 
+#include <QObject>
 #include <QVector>
 #include <QString>
 
-class BFInterpreter
+class BFInterpreter: public QObject
 {
+Q_OBJECT
 public:
-	BFInterpreter(QString bfSequence);
+	BFInterpreter(QString bfSequence="");
+	BFInterpreter& operator=(const BFInterpreter& that);
+	
+	void interpret();
+	
 private:
 	static const int m_iNumberOfCells = 5000;
 	QVector<int>     m_vCells;
 	int              m_iPosition;
+	QString          m_bfSequence;
 	
 	void interpret(QString bfSequence);
-	
+		
 	void putCLI();
+	void put();
 	void incrementPointer();
 	void decrementPointer();
 	void incrementValue();
 	void decrementValue();
+signals:
+	void signalPut(QChar);
 };
 
 #endif // BFINTERPRETER_HPP_

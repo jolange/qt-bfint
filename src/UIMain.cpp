@@ -10,18 +10,27 @@ UIMain::UIMain():
 	QMainWindow()
 {
 	ui.setupUi(this);
-	//this->setText("HEYO");
-	//connect(this, SIGNAL(clicked()), this, SLOT(testCall()));
 	//QString testSequence = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
 	QString testSequence = "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.";
 	ui.tbInput->setPlainText(testSequence);
-	connect(ui.buttonExecute, SIGNAL(clicked()), this, SLOT(slotExecute()));
+	
+	connect (ui.buttonExecute, SIGNAL(clicked()),
+	         this,             SLOT(slotExecute()));
+	connect (&m_bfInt,         SIGNAL(signalPut(QChar)), 
+	         this,             SLOT(slotPut(QChar)));
 }
 
 UIMain::~UIMain(){}
 
 void UIMain::slotExecute()
 {
-	BFInterpreter bfInt(ui.tbInput->toPlainText());
+	ui.tbOutput->clear();
+	m_bfInt = BFInterpreter(ui.tbInput->toPlainText());
+	m_bfInt.interpret();
+}
+
+void UIMain::slotPut(QChar c)
+{
+	ui.tbOutput->insertPlainText(c);
 }
 

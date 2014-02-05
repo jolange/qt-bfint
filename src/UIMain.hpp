@@ -1,9 +1,11 @@
 #ifndef UIMAIN_HPP_
 #define UIMAIN_HPP_
 
-#include <QMainWindow>
 
 #include "ui_UIMain.h"
+#include "BFInterpreter.hpp"
+
+#include <QMainWindow>
 
 class UIMain: public QMainWindow
 {
@@ -14,9 +16,11 @@ public:
 	virtual ~UIMain();
 private:
 	Ui::UIMain ui;
+	BFInterpreter m_bfInt;
 	
 private slots:
 	void slotExecute();
+	void slotPut(QChar);
 };
 
 #endif // UIMAIN_HPP_
