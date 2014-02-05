@@ -1,13 +1,12 @@
 qt-bfint
 ========
-
 Qt4 based Brainfuck Interpreter GUI
 
 Copyright 2014 Johannes Lange,
 for **License** see LICENSE file
 
-Building
-========
+__Building__
+
 In the base-path (where the qt-bfint.pro is located):
 <pre><code>
 $ qmake
@@ -15,7 +14,6 @@ $ make
 $ ./build/qt-fint
 </pre></code>
 
-TODO
-====
+__TODO__
 - loops
 - inputs
