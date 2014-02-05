@@ -11,12 +11,11 @@ In the base-path (where the qt-bfint.pro is located):
 <pre><code>
 $ qmake
 $ make
-$ ./build/qt-fint
+$ ./build/qt-bfint
 </pre></code>
 
 __TODO__
-- loop counter for breaking
-- inputs
+- loop counter for interruption
 - error checks (range checks)
 - QInputDialog
 - input Queue?

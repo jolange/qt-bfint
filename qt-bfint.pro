@@ -10,7 +10,7 @@ UI_DIR = $${DESTDIR}
 
 
 DEPENDPATH += src
-INCLUDEPATH += $${DESTDIR}
+INCLUDEPATH +=
 
 # Input
 FORMS   += src/UIMain.ui

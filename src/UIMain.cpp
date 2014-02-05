@@ -21,8 +21,6 @@ UIMain::UIMain():
 	connect (&m_bfInt,         SIGNAL(signalPut(QChar)), 
 	         this,             SLOT(slotPut(QChar)));
 	         
-	connect (&m_bfInt,         SIGNAL(signalInterrupted()), 
-	         this,             SLOT(slotSetStatusInterrupted()));
 	connect (ui.actionAbout,   SIGNAL(activated()), 
 	         this,             SLOT(slotShowAboutDialog()));
 }
