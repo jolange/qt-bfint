@@ -26,6 +26,8 @@ private slots:
 	void slotExecute();
 	void slotPut(QChar);
 	
+	void slotOpenFileDialog();
+	void slotSaveFileDialog();
 	void slotShowAboutDialog();
 };
 

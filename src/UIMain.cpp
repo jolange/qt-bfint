@@ -4,8 +4,10 @@
 #include "BFInterpreter.hpp"
 
 #include <iostream>
+#include <QFileDialog>
 #include <QMessageBox>
 #include <QString>
+#include <QTextStream>
 
 UIMain::UIMain():
 	QMainWindow()
@@ -21,6 +23,10 @@ UIMain::UIMain():
 	connect (&m_bfInt,         SIGNAL(signalPut(QChar)), 
 	         this,             SLOT(slotPut(QChar)));
 	         
+	connect (ui.actionOpen,    SIGNAL(activated()), 
+	         this,             SLOT(slotOpenFileDialog()));
+	connect (ui.actionSave,    SIGNAL(activated()), 
+	         this,             SLOT(slotSaveFileDialog()));
 	connect (ui.actionAbout,   SIGNAL(activated()), 
 	         this,             SLOT(slotShowAboutDialog()));
 }
@@ -40,6 +46,35 @@ void UIMain::slotExecute()
 void UIMain::slotPut(QChar c)
 {
 	ui.tbOutput->insertPlainText(c);
+}
+
+void UIMain::slotOpenFileDialog()
+{
+	ui.statusbar->showMessage("Opening");
+	QString fn = QFileDialog::getOpenFileName(this, tr("Open File"),"./bf-examples",
+	                                          tr("BF Files (*.bf);;All Files (*)"));
+	QFile file(fn);
+	if(file.open(QIODevice::ReadOnly)){
+		QString content = file.readAll();
+		ui.tbInput->setPlainText(content);
+		file.close();
+	}
+	ui.statusbar->showMessage("Opened File \"" + fn + "\". Ready");
+
+}
+void UIMain::slotSaveFileDialog()
+{
+	ui.statusbar->showMessage("Saving");
+	QString fn = QFileDialog::getSaveFileName(this, tr("Save File"),"./bf-examples",
+	                                          tr("BF Files (*.bf);;All Files (*)"));
+	QFile file(fn);
+	if (file.open(QIODevice::WriteOnly)){
+		QString content = ui.tbInput->toPlainText();
+		QTextStream stream(&file);
+		stream << content;
+		file.close();
+	}
+	ui.statusbar->showMessage("Saved File \"" + fn + "\". Ready");
 }
 
 void UIMain::slotShowAboutDialog()

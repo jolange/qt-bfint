@@ -90,7 +90,7 @@ void BFInterpreter::get()
 	}
 }
 
-// TODO: range checks
+
 void BFInterpreter::incrementPointer() { m_iPosition++; }
 void BFInterpreter::decrementPointer() { m_iPosition--; }
 void BFInterpreter::incrementValue()   { m_vCells[m_iPosition]++; }
