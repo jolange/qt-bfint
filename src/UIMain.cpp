@@ -12,8 +12,8 @@ UIMain::UIMain():
 {
 	ui.setupUi(this);
 	ui.statusbar->showMessage("Ready");
-	//QString testSequence = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
-	QString testSequence = "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.";
+	QString testSequence = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
+	//QString testSequence = "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.";
 	ui.tbInput->setPlainText(testSequence);
 	
 	connect (ui.buttonExecute, SIGNAL(clicked()),

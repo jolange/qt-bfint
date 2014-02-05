@@ -30,6 +30,7 @@ private:
 	QString          m_bfSequence;
 	
 	void interpret(QString bfSequence);
+	void loop(QString bfSequence, QString::const_iterator &itLoopStart);
 		
 	void putCLI();
 	void put();
@@ -37,6 +38,7 @@ private:
 	void decrementPointer();
 	void incrementValue();
 	void decrementValue();
+	bool cellCondition();
 signals:
 	void signalPut(QChar);
 };

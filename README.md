@@ -15,7 +15,7 @@ $ ./build/qt-fint
 </pre></code>
 
 __TODO__
-- loops
+- loop counter for breaking
 - inputs
 - error checks
 - QInputDialog

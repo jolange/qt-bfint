@@ -38,13 +38,29 @@ void BFInterpreter::interpret(QString bfSequence)
 			case '>': incrementPointer(); break;
 			case '<': decrementPointer(); break;
 			case '.': putCLI(); put();    break;
-			case '[': break;
+			case '[': loop(bfSequence,it);break;
 			case ']': break;
 			default : break;
 		}
 	}
 		
 	std::cout << std::endl;
+}
+
+void BFInterpreter::loop(QString bfSequence, QString::const_iterator &itLoopStart)
+{
+	std::cout << "loop:";
+	QString loopSequence;
+	QString::const_iterator &it = itLoopStart;
+	it++;
+	QChar c;
+	for(; it != bfSequence.constEnd(); it++){
+		c = it->toAscii();
+		if(c == ']') break;
+		loopSequence += c;
+	}
+	std::cout << loopSequence.toStdString() << std::endl;
+	while (cellCondition()) interpret(loopSequence);
 }
 
 void BFInterpreter::putCLI()
@@ -64,3 +80,4 @@ void BFInterpreter::incrementPointer() { m_iPosition++; }
 void BFInterpreter::decrementPointer() { m_iPosition--; }
 void BFInterpreter::incrementValue()   { m_vCells[m_iPosition]++; }
 void BFInterpreter::decrementValue()   { m_vCells[m_iPosition]--; }
+bool BFInterpreter::cellCondition()    { return m_vCells[m_iPosition] > 0; }
