@@ -3,6 +3,8 @@ qt-bfint
 
 Qt4 based Brainfuck Interpreter GUI
 
+Copyright 2014 Johannes Lange,
+for **License** see LICENSE file
 
 Building
 ========
