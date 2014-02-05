@@ -4,6 +4,7 @@
 #include "BFInterpreter.hpp"
 
 #include <iostream>
+#include <QMessageBox>
 #include <QString>
 
 UIMain::UIMain():
@@ -19,6 +20,9 @@ UIMain::UIMain():
 	         this,             SLOT(slotExecute()));
 	connect (&m_bfInt,         SIGNAL(signalPut(QChar)), 
 	         this,             SLOT(slotPut(QChar)));
+	         
+	connect (ui.actionAbout,   SIGNAL(activated()), 
+	         this,             SLOT(slotShowAboutDialog()));
 }
 
 UIMain::~UIMain(){}
@@ -37,3 +41,12 @@ void UIMain::slotPut(QChar c)
 	ui.tbOutput->insertPlainText(c);
 }
 
+void UIMain::slotShowAboutDialog()
+{
+	QString text = QString()
+	             + "Qt4 based Brainfuck Interpreter GUI<br><br>Copyright 2014 Johannes Lange,<br>"
+	             + "for License see LICENSE file shipped with the code<br>or visit<br><br>"
+	             + "<a href='https://github.com/johannes-lange/qt-bfint'>https://github.com/johannes-lange/qt-bfint</a>";
+	QMessageBox::about(this, "About qt-brainf", text);
+	//QMessageBox::aboutQt(this);
+}

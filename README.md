@@ -17,3 +17,7 @@ $ ./build/qt-fint
 __TODO__
 - loops
 - inputs
+- error checks
+- QInputDialog
+- input Queue?
+- saving, opening, examples

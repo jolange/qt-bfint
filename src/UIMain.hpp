@@ -25,6 +25,8 @@ private:
 private slots:
 	void slotExecute();
 	void slotPut(QChar);
+	
+	void slotShowAboutDialog();
 };
 
 #endif // UIMAIN_HPP_
