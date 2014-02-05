@@ -1,11 +1,12 @@
 #include "BFInterpreter.hpp"
 
 #include <iostream>
-//#include <QChar>
+#include <QInputDialog>
 
 BFInterpreter::BFInterpreter(QString bfSequence):
 	QObject(),
-	m_bfSequence(bfSequence)
+	m_bfSequence(bfSequence),
+	m_bInterrupted(false)
 {
 	// init cells
 	m_vCells    = QVector<int>(m_iNumberOfCells,0);
@@ -15,35 +16,37 @@ BFInterpreter::BFInterpreter(QString bfSequence):
 BFInterpreter& BFInterpreter::operator=(const BFInterpreter& that)
 {
 	// init cells
-	m_vCells     = that.m_vCells;
-	m_iPosition  = that.m_iPosition;
-	m_bfSequence = that.m_bfSequence;
+	m_vCells       = that.m_vCells;
+	m_iPosition    = that.m_iPosition;
+	m_bfSequence   = that.m_bfSequence;
+	m_bInterrupted = that.m_bInterrupted;
 	return *this;
 }
 
-void BFInterpreter::interpret()
+bool BFInterpreter::interpret()
 {
 	interpret(m_bfSequence);
+	return m_bInterrupted;
 }
 
 void BFInterpreter::interpret(QString bfSequence)
 {
 	std::cout << "interpreting " << bfSequence.toStdString() << std::endl;
 	QString::const_iterator it = bfSequence.constBegin();
-	for(; it != bfSequence.constEnd(); it++){
+	for(; it != bfSequence.constEnd() && !m_bInterrupted; it++){
 		//std::cout << it->toAscii();
 		switch (it->toAscii()){
 			case '+': incrementValue();   break;
 			case '-': decrementValue();   break;
 			case '>': incrementPointer(); break;
 			case '<': decrementPointer(); break;
-			case '.': putCLI(); put();    break;
+			case '.': put();              break;
+			case ',': get();              break;
 			case '[': loop(bfSequence,it);break;
-			case ']': break;
+			case ']': break; // TODO error!
 			default : break;
 		}
 	}
-		
 	std::cout << std::endl;
 }
 
@@ -60,7 +63,7 @@ void BFInterpreter::loop(QString bfSequence, QString::const_iterator &itLoopStar
 		loopSequence += c;
 	}
 	std::cout << loopSequence.toStdString() << std::endl;
-	while (cellCondition()) interpret(loopSequence);
+	while (cellCondition() && !m_bInterrupted) interpret(loopSequence);
 }
 
 void BFInterpreter::putCLI()
@@ -73,6 +76,18 @@ void BFInterpreter::putCLI()
 void BFInterpreter::put()
 {
 	emit signalPut(QChar(m_vCells[m_iPosition]));
+}
+
+void BFInterpreter::get()
+{
+	bool ok;
+	QString text = QInputDialog::getText(0, "Input requested!", "Input:",
+	                                     QLineEdit::Normal, "", &ok);
+	if (ok && !text.isEmpty()){
+		m_vCells[m_iPosition] = text[0].toAscii();
+	}else{
+		m_bInterrupted = true;
+	}
 }
 
 // TODO: range checks

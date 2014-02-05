@@ -17,7 +17,7 @@ $ ./build/qt-fint
 __TODO__
 - loop counter for breaking
 - inputs
-- error checks
+- error checks (range checks)
 - QInputDialog
 - input Queue?
 - saving, opening, examples

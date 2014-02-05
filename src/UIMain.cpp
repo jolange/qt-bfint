@@ -21,6 +21,8 @@ UIMain::UIMain():
 	connect (&m_bfInt,         SIGNAL(signalPut(QChar)), 
 	         this,             SLOT(slotPut(QChar)));
 	         
+	connect (&m_bfInt,         SIGNAL(signalInterrupted()), 
+	         this,             SLOT(slotSetStatusInterrupted()));
 	connect (ui.actionAbout,   SIGNAL(activated()), 
 	         this,             SLOT(slotShowAboutDialog()));
 }
@@ -32,8 +34,9 @@ void UIMain::slotExecute()
 	ui.statusbar->showMessage("Executing...");
 	ui.tbOutput->clear();
 	m_bfInt = BFInterpreter(ui.tbInput->toPlainText());
-	m_bfInt.interpret();
-	ui.statusbar->showMessage("Executing done. Ready");
+	bool interrupted = m_bfInt.interpret();
+	if (!interrupted) ui.statusbar->showMessage("Execution done. Ready");
+	else              ui.statusbar->showMessage("Execution interrupted. Ready");
 }
 
 void UIMain::slotPut(QChar c)
@@ -48,5 +51,4 @@ void UIMain::slotShowAboutDialog()
 	             + "for License see LICENSE file shipped with the code<br>or visit<br><br>"
 	             + "<a href='https://github.com/johannes-lange/qt-bfint'>https://github.com/johannes-lange/qt-bfint</a>";
 	QMessageBox::about(this, "About qt-brainf", text);
-	//QMessageBox::aboutQt(this);
 }
