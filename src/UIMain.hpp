@@ -16,21 +16,21 @@ namespace qt_bfint { class UIMain; }
 class qt_bfint::UIMain: public QMainWindow
 {
 Q_OBJECT
-	
+   
 public:
-	UIMain();
-	virtual ~UIMain();
+   UIMain();
+   virtual ~UIMain();
 private:
-	Ui::UIMain ui;
-	BFInterpreter m_bfInt;
-	
+   Ui::UIMain ui;
+   BFInterpreter m_bfInt;
+   
 private slots:
-	void slotExecute();
-	void slotPut(QChar);
-	
-	void slotOpenFileDialog();
-	void slotSaveFileDialog();
-	void slotShowAboutDialog();
+   void slotExecute();
+   void slotPut(QChar);
+   
+   void slotOpenFileDialog();
+   void slotSaveFileDialog();
+   void slotShowAboutDialog();
 };
 
 #endif // UIMAIN_HPP_
