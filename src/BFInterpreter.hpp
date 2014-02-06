@@ -32,12 +32,15 @@ private:
    QVector<int>     m_vCells;
    int              m_iPosition;
    QString          m_bfSequence;
+   QString          m_sInputQueue;
+
    bool             m_bInterrupted;
-   
+   bool             m_bQueueInputs;
+
    void interpret(QString bfSequence);
    void loop(QString bfSequence, QString::const_iterator &itLoopStart);
-      
-   void putCLI();
+
+   void putCLI(); // TODO remove
    void put();
    void get();
    void incrementPointer();
@@ -47,6 +50,8 @@ private:
    bool cellCondition();
 signals:
    void signalPut(QChar);
+public slots:
+   void slotQueueInputs(int cs); // int is Qt::CheckState
 };
 
 #endif // BFINTERPRETER_HPP_

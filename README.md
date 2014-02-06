@@ -22,5 +22,4 @@ __TODO__
 - loop counter for interruption: UI input?
 - interrupt reasons?
 - error checks (range checks, parsing/check brackets "online")
-- input Queue?
 - examples

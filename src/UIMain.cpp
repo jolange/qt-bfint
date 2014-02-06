@@ -20,17 +20,19 @@ UIMain::UIMain():
    //QString testSequence = "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.";
    ui.tbInput->setPlainText(testSequence);
    
-   connect (ui.buttonExecute, SIGNAL(clicked()),
-            this,             SLOT(slotExecute()));
-   connect (&m_bfInt,         SIGNAL(signalPut(QChar)), 
-            this,             SLOT(slotPut(QChar)));
+   connect(ui.buttonExecute, SIGNAL(clicked()),
+           this,             SLOT(slotExecute()));
+   connect(ui.cbQueueInputs, SIGNAL(stateChanged(int)),
+           &m_bfInt        , SLOT(slotQueueInputs(int)));
+   connect(&m_bfInt,         SIGNAL(signalPut(QChar)), 
+           this,             SLOT(slotPut(QChar)));
             
-   connect (ui.actionOpen,    SIGNAL(activated()), 
-            this,             SLOT(slotOpenFileDialog()));
-   connect (ui.actionSave,    SIGNAL(activated()), 
-            this,             SLOT(slotSaveFileDialog()));
-   connect (ui.actionAbout,   SIGNAL(activated()), 
-            this,             SLOT(slotShowAboutDialog()));
+   connect(ui.actionOpen,    SIGNAL(activated()), 
+           this,             SLOT(slotOpenFileDialog()));
+   connect(ui.actionSave,    SIGNAL(activated()), 
+           this,             SLOT(slotSaveFileDialog()));
+   connect(ui.actionAbout,   SIGNAL(activated()), 
+           this,             SLOT(slotShowAboutDialog()));
 }
 
 UIMain::~UIMain(){}
@@ -40,6 +42,7 @@ void UIMain::slotExecute()
    ui.statusbar->showMessage("Executing...");
    ui.tbOutput->clear();
    m_bfInt = BFInterpreter(ui.tbInput->toPlainText());
+   m_bfInt.slotQueueInputs(ui.cbQueueInputs->checkState());
    bool interrupted = m_bfInt.interpret();
    if (!interrupted) ui.statusbar->showMessage("Execution done. Ready");
    else              ui.statusbar->showMessage("Execution interrupted. Ready");
