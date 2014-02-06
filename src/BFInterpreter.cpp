@@ -34,10 +34,8 @@ bool BFInterpreter::interpret()
 
 void BFInterpreter::interpret(QString bfSequence)
 {
-   std::cout << "interpreting " << bfSequence.toStdString() << std::endl;
    QString::const_iterator it = bfSequence.constBegin();
    for(; it != bfSequence.constEnd() && !m_bInterrupted; it++){
-      //std::cout << it->toAscii();
       switch (it->toAscii()){
          case '+': incrementValue();   break;
          case '-': decrementValue();   break;
@@ -50,12 +48,10 @@ void BFInterpreter::interpret(QString bfSequence)
          default : break;
       }
    }
-   std::cout << std::endl;
 }
 
 void BFInterpreter::loop(QString bfSequence, QString::const_iterator &itLoopStart)
 {
-   std::cout << "loop:";
    QString loopSequence;
    QString::const_iterator &it = itLoopStart;
    it++;
@@ -65,7 +61,7 @@ void BFInterpreter::loop(QString bfSequence, QString::const_iterator &itLoopStar
       if(c == ']') break;
       loopSequence += c;
    }
-   std::cout << loopSequence.toStdString() << std::endl;
+
    int iLoopCount = 0;
    while (cellCondition() && !m_bInterrupted){
       interpret(loopSequence);
