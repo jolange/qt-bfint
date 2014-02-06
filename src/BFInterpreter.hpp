@@ -5,11 +5,13 @@
 #include <QVector>
 #include <QString>
 
+namespace qt_bfint { class BFInterpreter; }
+
 /*!
  * \class BFInterpreter
  * Interprets BF-Sequences in QString-Format
  */
-class BFInterpreter: public QObject
+class qt_bfint::BFInterpreter: public QObject
 {
 Q_OBJECT
 public:

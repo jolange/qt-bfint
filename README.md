@@ -20,7 +20,6 @@ and open it in VS.
 
 __TODO__
 - loop counter for interruption
-- error checks (range checks)
-- QInputDialog
+- error checks (range checks, parsing/check brackets "online")
 - input Queue?
-- saving, opening, examples
+- examples

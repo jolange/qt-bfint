@@ -9,6 +9,8 @@
 #include <QString>
 #include <QTextStream>
 
+namespace qt_bfint{
+
 UIMain::UIMain():
 	QMainWindow()
 {
@@ -85,3 +87,6 @@ void UIMain::slotShowAboutDialog()
 	             + "<a href='https://github.com/johannes-lange/qt-bfint'>https://github.com/johannes-lange/qt-bfint</a>";
 	QMessageBox::about(this, "About qt-brainf", text);
 }
+
+
+} // end namespace qt_bfint

@@ -7,11 +7,13 @@
 
 #include <QMainWindow>
 
+namespace qt_bfint { class UIMain; }
+
 /*!
  * \class UIMain
  * Main Window
  */
-class UIMain: public QMainWindow
+class qt_bfint::UIMain: public QMainWindow
 {
 Q_OBJECT
 	

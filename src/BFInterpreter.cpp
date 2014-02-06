@@ -3,6 +3,9 @@
 #include <iostream>
 #include <QInputDialog>
 
+
+namespace qt_bfint{
+
 BFInterpreter::BFInterpreter(QString bfSequence):
 	QObject(),
 	m_bfSequence(bfSequence),
@@ -96,3 +99,6 @@ void BFInterpreter::decrementPointer() { m_iPosition--; }
 void BFInterpreter::incrementValue()   { m_vCells[m_iPosition]++; }
 void BFInterpreter::decrementValue()   { m_vCells[m_iPosition]--; }
 bool BFInterpreter::cellCondition()    { return m_vCells[m_iPosition] > 0; }
+
+
+} // end namespace qt_bfint
