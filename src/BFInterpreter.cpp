@@ -46,7 +46,7 @@ void BFInterpreter::interpret(QString bfSequence)
 			case '.': put();              break;
 			case ',': get();              break;
 			case '[': loop(bfSequence,it);break;
-			case ']': break; // TODO error!
+			case ']': m_bInterrupted=true;break; // TODO error!
 			default : break;
 		}
 	}
@@ -66,7 +66,13 @@ void BFInterpreter::loop(QString bfSequence, QString::const_iterator &itLoopStar
 		loopSequence += c;
 	}
 	std::cout << loopSequence.toStdString() << std::endl;
-	while (cellCondition() && !m_bInterrupted) interpret(loopSequence);
+	int iLoopCount = 0;
+	while (cellCondition() && !m_bInterrupted){
+		interpret(loopSequence);
+		iLoopCount++;
+		if (iLoopCount > 2000)
+			m_bInterrupted = true;
+	}
 }
 
 void BFInterpreter::putCLI()

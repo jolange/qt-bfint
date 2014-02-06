@@ -103,7 +103,7 @@ You will be prompted for input again if the input queue is empty.</string>
     <item>
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Output</string>
+       <string>Output:</string>
       </property>
      </widget>
     </item>

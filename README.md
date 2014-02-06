@@ -19,7 +19,8 @@ Generate .vcproj-file via <code>$ qmake.exe -spec win32-msvc2010 -tp vc</code>
 and open it in VS.
 
 __TODO__
-- loop counter for interruption
+- loop counter for interruption: UI input?
+- interrupt reasons?
 - error checks (range checks, parsing/check brackets "online")
 - input Queue?
 - examples
