@@ -1,13 +1,17 @@
 TEMPLATE = app
-TARGET = qt-bfint
+TARGET   = qt-bfint
+VERSION  = 0.1b
 
-# http://stackoverflow.com/questions/2580934/how-to-specify-different-debug-release-output-directories-in-qmake-pro-file/2583548#2583548
-DESTDIR = build
-OBJECTS_DIR = $${DESTDIR}
-MOC_DIR = $${DESTDIR}
-RCC_DIR = $${DESTDIR}
-UI_DIR = $${DESTDIR}
+# for access in code
+DEFINES += PROJECTVERSION=\\\"$$VERSION\\\" 
 
+# https://qt-project.org/doc/qt-5/qmake-variable-reference.html
+DESTDIR = bin
+BUILDDIR = build
+OBJECTS_DIR = $${BUILDDIR}
+MOC_DIR = $${BUILDDIR}
+RCC_DIR = $${BUILDDIR}
+UI_DIR = $${BUILDDIR}
 
 DEPENDPATH += src
 INCLUDEPATH +=
