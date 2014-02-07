@@ -19,7 +19,7 @@ UIMain::UIMain():
    QString testSequence = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
    //QString testSequence = "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.";
    ui.tbInput->setPlainText(testSequence);
-   
+
    connect(ui.buttonExecute, SIGNAL(clicked()),
            this,             SLOT(slotExecute()));
    connect(ui.cbQueueInputs, SIGNAL(stateChanged(int)),
@@ -85,11 +85,11 @@ void UIMain::slotSaveFileDialog()
 void UIMain::slotShowAboutDialog()
 {
    QString text = QString()
-                + "<b>qt-bfint Version</b> " + PROJECTVERSION + " (" + __DATE__ + ")<br>"
+                + "<b>qt-bfint</b> Version " + PROJECTVERSION + " (" + __DATE__ + ")<br>"
                 + "Qt4 based Brainfuck Interpreter GUI<br><br>Copyright 2014 Johannes Lange,<br>"
                 + "for License see LICENSE file shipped with the code<br>or visit<br><br>"
                 + "<a href='https://github.com/johannes-lange/qt-bfint'>https://github.com/johannes-lange/qt-bfint</a>";
-   QMessageBox::about(this, "About qt-brainf", text);
+   QMessageBox::about(this, QString("About qt-brainf Version ") + PROJECTVERSION, text);
 }
 
 

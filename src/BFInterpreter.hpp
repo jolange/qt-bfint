@@ -21,12 +21,12 @@ public:
    BFInterpreter(QString bfSequence="");
    //! copy-constructor
    BFInterpreter& operator=(const BFInterpreter& that);
-   
+
    /*! actual interpreting
     *  \returns false if interrupted
     */
    bool interpret();
-   
+
 private:
    static const int m_iNumberOfCells = 5000;
    QVector<int>     m_vCells;
@@ -40,7 +40,6 @@ private:
    void interpret(QString bfSequence);
    void loop(QString bfSequence, QString::const_iterator &itLoopStart);
 
-   void putCLI(); // TODO remove
    void put();
    void get();
    void incrementPointer();

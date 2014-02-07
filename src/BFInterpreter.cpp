@@ -75,29 +75,11 @@ void BFInterpreter::loop(QString bfSequence, QString::const_iterator &itLoopStar
    }
 }
 
-void BFInterpreter::putCLI()
-{
-   //std::cout << QChar(m_vCells[m_iPosition]).toAscii() << std::flush;
-   std::cout << (char)m_vCells[m_iPosition] << std::flush;
-   //std::cout << m_vCells[m_iPosition] << std::flush;
-}
-
 void BFInterpreter::put()
 {
    emit signalPut(QChar(m_vCells[m_iPosition]));
 }
 
-//void BFInterpreter::get()
-//{
-   //bool ok;
-   //QString text = QInputDialog::getText(0, "Input requested!", "Input:",
-                                        //QLineEdit::Normal, "", &ok);
-   //if (ok && !text.isEmpty()){
-      //m_vCells[m_iPosition] = text[0].toAscii();
-   //}else{
-      //m_bInterrupted = true;
-   //}
-//}
 void BFInterpreter::get()
 {
    if (m_bQueueInputs && !m_sInputQueue.isEmpty()){
