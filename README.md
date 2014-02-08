@@ -15,9 +15,4 @@ $ ./bin/qt-bfint
 Generate .vcproj-file via <code>$ qmake.exe -spec win32-msvc2010 -tp vc</code>
 and open it in VS.
 
-##### TODO
-- loop counter for interruption: UI input?
-- interrupt reasons?
-- error checks (range checks, parsing/check brackets "online")
-- examples
-- doxygen
+##### [TODO](TODO.md)s, known bugs, planned features
