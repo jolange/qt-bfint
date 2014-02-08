@@ -10,8 +10,8 @@
 
 #### Planned Features
 - examples
-- undo/redo in menu
-- output: show inputs? different colouring (html)?
+- undo/redo in menu: use the actions of QTextBrowser
+- output: show inputs? different colouring (html)? http://qt-project.org/doc/qt-4.8/richtext-syntaxhighlighter.html
 - static build windows
   * download in release
   * link in readme

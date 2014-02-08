@@ -32,6 +32,15 @@ UIMain::UIMain():
    connect(&m_bfInt,         SIGNAL(signalPut(QChar)), 
            this,             SLOT(slotPut(QChar)));
 
+   connect(ui.tbInput,       SIGNAL(undoAvailable(bool)),
+           ui.actionUndo,    SLOT(setEnabled(bool)));
+   connect(ui.tbInput,       SIGNAL(redoAvailable(bool)),
+           ui.actionRedo,    SLOT(setEnabled(bool)));
+   connect(ui.actionUndo,    SIGNAL(activated()),
+           ui.tbInput,       SLOT(undo()));
+   connect(ui.actionRedo,    SIGNAL(activated()),
+           ui.tbInput,       SLOT(redo()));
+
    connect(ui.actionOpen,    SIGNAL(activated()), 
            this,             SLOT(slotOpenFileDialog()));
    connect(ui.actionSave,    SIGNAL(activated()), 
