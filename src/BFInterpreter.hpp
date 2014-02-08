@@ -5,7 +5,12 @@
 #include <QVector>
 #include <QString>
 
-namespace qt_bfint { class BFInterpreter; }
+namespace qt_bfint
+{
+   class BFInterpreter; 
+   enum  EmptyInputHandle {breakProgram = 0, keepCell = 1, zeroCell = 2};
+}
+
 
 /*!
  * \class BFInterpreter
@@ -37,6 +42,7 @@ private:
    bool             m_bInterrupted;
    bool             m_bQueueInputs;
    int              m_iMaxLoopIterations;
+   EmptyInputHandle m_emtpyInputHandle;
 
    void interpret(QString bfSequence);
    void loop(QString bfSequence, QString::const_iterator &itLoopStart);
@@ -53,6 +59,7 @@ signals:
 public slots:
    void slotQueueInputs(int cs); // int is Qt::CheckState
    void slotMaxLoopIterations(int mli);
+   void slotEmptyInputHandle(int ih); // int is qt_bfint::EmptyInputHandle
 };
 
 #endif // BFINTERPRETER_HPP_

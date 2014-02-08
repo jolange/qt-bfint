@@ -11,7 +11,8 @@ BFInterpreter::BFInterpreter(QString bfSequence):
    m_bfSequence(bfSequence),
    m_bInterrupted(false),
    m_bQueueInputs(true),
-   m_iMaxLoopIterations(2000)
+   m_iMaxLoopIterations(2000),
+   m_emtpyInputHandle(breakProgram)
 {
    // init cells
    m_vCells    = QVector<int>(m_iNumberOfCells,0);
@@ -28,6 +29,7 @@ BFInterpreter& BFInterpreter::operator=(const BFInterpreter& that)
    m_bQueueInputs = that.m_bQueueInputs;
    m_sInputQueue  = that.m_sInputQueue;
    m_iMaxLoopIterations = that.m_iMaxLoopIterations;
+   m_emtpyInputHandle   = that.m_emtpyInputHandle;
    return *this;
 }
 
@@ -91,13 +93,22 @@ void BFInterpreter::get()
       bool ok;
       QString text = QInputDialog::getText(0, "Input requested!", "Input:",
                                            QLineEdit::Normal, "", &ok);
-      if (ok && !text.isEmpty()){
-         if (m_bQueueInputs){
-            m_sInputQueue += text;
-            m_vCells[m_iPosition] = m_sInputQueue[0].toAscii();
-            m_sInputQueue.remove(0,1);
+      if (ok){
+         if (!text.isEmpty()){
+            if (m_bQueueInputs){
+               m_sInputQueue += text;
+               m_vCells[m_iPosition] = m_sInputQueue[0].toAscii();
+               m_sInputQueue.remove(0,1);
+            }else{
+               m_vCells[m_iPosition] = text[0].toAscii();
+            }
          }else{
-            m_vCells[m_iPosition] = text[0].toAscii();
+            if (m_emtpyInputHandle == breakProgram){
+               m_bInterrupted = true;
+            }else if (m_emtpyInputHandle == zeroCell){
+               m_vCells[m_iPosition] = 0;
+            } // else: (m_emtpyInputHandle == keep Cell)
+               // do nothing.
          }
       }else{
          m_bInterrupted = true;
@@ -123,6 +134,11 @@ void BFInterpreter::slotQueueInputs(int cs)
 void BFInterpreter::slotMaxLoopIterations(int mli)
 {
    m_iMaxLoopIterations = mli;
+}
+
+void BFInterpreter::slotEmptyInputHandle(int ih)
+{
+   m_emtpyInputHandle = (EmptyInputHandle)ih;
 }
 
 } // end namespace qt_bfint

@@ -23,9 +23,11 @@ UIMain::UIMain():
    connect(ui.buttonExecute, SIGNAL(clicked()),
            this,             SLOT(slotExecute()));
    connect(ui.cbQueueInputs, SIGNAL(stateChanged(int)),
-           &m_bfInt        , SLOT(slotQueueInputs(int)));
+           &m_bfInt,         SLOT(slotQueueInputs(int)));
    connect(ui.sbMaxLoopIter, SIGNAL(valueChanged(int)),
-           &m_bfInt        , SLOT(slotMaxLoopIterations(int)));
+           &m_bfInt,         SLOT(slotMaxLoopIterations(int)));
+   connect(ui.cbEIH,         SIGNAL(currentIndexChanged(int)),
+           &m_bfInt,         SLOT(slotEmptyInputHandle(int)));
 
    connect(&m_bfInt,         SIGNAL(signalPut(QChar)), 
            this,             SLOT(slotPut(QChar)));
@@ -47,6 +49,7 @@ void UIMain::slotExecute()
    m_bfInt = BFInterpreter(ui.tbInput->toPlainText());
    m_bfInt.slotQueueInputs(ui.cbQueueInputs->checkState());
    m_bfInt.slotMaxLoopIterations(ui.sbMaxLoopIter->value());
+   m_bfInt.slotEmptyInputHandle(ui.cbEIH->currentIndex());
    bool interrupted = m_bfInt.interpret();
    if (!interrupted) ui.statusbar->showMessage("Execution done. Ready");
    else              ui.statusbar->showMessage("Execution interrupted. Ready");
