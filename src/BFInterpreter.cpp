@@ -10,7 +10,8 @@ BFInterpreter::BFInterpreter(QString bfSequence):
    QObject(),
    m_bfSequence(bfSequence),
    m_bInterrupted(false),
-   m_bQueueInputs(true)
+   m_bQueueInputs(true),
+   m_iMaxLoopIterations(2000)
 {
    // init cells
    m_vCells    = QVector<int>(m_iNumberOfCells,0);
@@ -26,6 +27,7 @@ BFInterpreter& BFInterpreter::operator=(const BFInterpreter& that)
    m_bInterrupted = that.m_bInterrupted;
    m_bQueueInputs = that.m_bQueueInputs;
    m_sInputQueue  = that.m_sInputQueue;
+   m_iMaxLoopIterations = that.m_iMaxLoopIterations;
    return *this;
 }
 
@@ -70,7 +72,7 @@ void BFInterpreter::loop(QString bfSequence, QString::const_iterator &itLoopStar
    while (cellCondition() && !m_bInterrupted){
       interpret(loopSequence);
       iLoopCount++;
-      if (iLoopCount > 2000)
+      if (iLoopCount >= m_iMaxLoopIterations)
          m_bInterrupted = true;
    }
 }
@@ -116,6 +118,11 @@ bool BFInterpreter::cellCondition()    { return m_vCells[m_iPosition] > 0; }
 void BFInterpreter::slotQueueInputs(int cs)
 {
    m_bQueueInputs = (cs == Qt::Checked);
+}
+
+void BFInterpreter::slotMaxLoopIterations(int mli)
+{
+   m_iMaxLoopIterations = mli;
 }
 
 } // end namespace qt_bfint

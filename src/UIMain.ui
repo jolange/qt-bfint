@@ -45,7 +45,16 @@
     </item>
     <item>
      <widget class="QTextBrowser" name="tbInput">
+      <property name="undoRedoEnabled">
+       <bool>true</bool>
+      </property>
       <property name="readOnly">
+       <bool>false</bool>
+      </property>
+      <property name="acceptRichText">
+       <bool>false</bool>
+      </property>
+      <property name="openLinks">
        <bool>false</bool>
       </property>
      </widget>
@@ -76,6 +85,48 @@ You will be prompted for input again if the input queue is empty.</string>
        </widget>
       </item>
       <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="toolTip">
+         <string>Avoid infinite loops</string>
+        </property>
+        <property name="text">
+         <string>Max. loop iterations:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="sbMaxLoopIter">
+        <property name="toolTip">
+         <string>Avoid infinite loops</string>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>50000</number>
+        </property>
+        <property name="singleStep">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>2000</number>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -90,6 +141,9 @@ You will be prompted for input again if the input queue is empty.</string>
       </item>
       <item>
        <widget class="QPushButton" name="buttonExecute">
+        <property name="toolTip">
+         <string>Shortcut: F5</string>
+        </property>
         <property name="text">
          <string>&amp;Execute</string>
         </property>
@@ -108,7 +162,11 @@ You will be prompted for input again if the input queue is empty.</string>
      </widget>
     </item>
     <item>
-     <widget class="QTextBrowser" name="tbOutput"/>
+     <widget class="QTextBrowser" name="tbOutput">
+      <property name="openLinks">
+       <bool>false</bool>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

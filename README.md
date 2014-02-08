@@ -20,3 +20,4 @@ and open it in VS.
 - interrupt reasons?
 - error checks (range checks, parsing/check brackets "online")
 - examples
+- doxygen

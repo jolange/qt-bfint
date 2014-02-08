@@ -36,6 +36,7 @@ private:
 
    bool             m_bInterrupted;
    bool             m_bQueueInputs;
+   int              m_iMaxLoopIterations;
 
    void interpret(QString bfSequence);
    void loop(QString bfSequence, QString::const_iterator &itLoopStart);
@@ -51,6 +52,7 @@ signals:
    void signalPut(QChar);
 public slots:
    void slotQueueInputs(int cs); // int is Qt::CheckState
+   void slotMaxLoopIterations(int mli);
 };
 
 #endif // BFINTERPRETER_HPP_
