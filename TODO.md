@@ -1,6 +1,7 @@
 #### TODO
 - interrupt reasons
 - error checks (range checks, parsing/check brackets "online")
+- VS-Project sets target name to qt-bfint<version>.exe but linker creates qt-bfint.exe
 - doxygen
 
 

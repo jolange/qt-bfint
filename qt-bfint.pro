@@ -3,7 +3,8 @@ TARGET   = qt-bfint
 VERSION  = 0.1b
 
 # for access in code
-DEFINES += PROJECTVERSION=\\\"$$VERSION\\\" 
+win32:DEFINES += PROJECTVERSION=\"$$VERSION\" 
+unix: DEFINES += PROJECTVERSION=\\\"$$VERSION\\\" 
 
 # https://qt-project.org/doc/qt-5/qmake-variable-reference.html
 DESTDIR = bin
