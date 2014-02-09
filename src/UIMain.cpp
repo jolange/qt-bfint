@@ -45,6 +45,8 @@ UIMain::UIMain():
            this,             SLOT(slotOpenFileDialog()));
    connect(ui.actionSave,    SIGNAL(activated()), 
            this,             SLOT(slotSaveFileDialog()));
+   connect(ui.actionLoadEx,  SIGNAL(activated()), 
+           this,             SLOT(slotLoadExample()));
    connect(ui.actionAbout,   SIGNAL(activated()), 
            this,             SLOT(slotShowAboutDialog()));
 }
@@ -69,20 +71,25 @@ void UIMain::slotPut(QChar c)
    ui.tbOutput->insertPlainText(c);
 }
 
-void UIMain::slotOpenFileDialog()
+void UIMain::slotOpenFile(QString filename)
 {
-   ui.statusbar->showMessage("Opening");
-   QString fn = QFileDialog::getOpenFileName(this, tr("Open File"),"./bf-examples",
-                                             tr("BF Files (*.bf);;All Files (*)"));
-   QFile file(fn);
+   QFile file(filename);
    if(file.open(QIODevice::ReadOnly)){
       QString content = file.readAll();
       ui.tbInput->setPlainText(content);
       file.close();
    }
-   ui.statusbar->showMessage("Opened File \"" + fn + "\". Ready");
-
+   ui.statusbar->showMessage("Opened File \"" + filename + "\". Ready");
 }
+
+void UIMain::slotOpenFileDialog()
+{
+   ui.statusbar->showMessage("Opening");
+   QString fn = QFileDialog::getOpenFileName(this, tr("Open File"),"./bf-examples",
+                                             tr("BF Files (*.bf);;All Files (*)"));
+   slotOpenFile(fn);
+}
+
 void UIMain::slotSaveFileDialog()
 {
    ui.statusbar->showMessage("Saving");
@@ -96,6 +103,11 @@ void UIMain::slotSaveFileDialog()
       file.close();
    }
    ui.statusbar->showMessage("Saved File \"" + fn + "\". Ready");
+}
+
+void UIMain::slotLoadExample()
+{
+   slotOpenFile(":bf-examples/hello.bf");
 }
 
 void UIMain::slotShowAboutDialog()

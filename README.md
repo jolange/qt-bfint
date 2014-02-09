@@ -12,7 +12,7 @@ $ make
 $ ./bin/qt-bfint
 </pre></code>
 - **Windows** with Visual Studio (2010):
-Generate .vcproj-file via <code>$ qmake.exe -spec win32-msvc2010 -tp vc</code>
+Generate .vcproj-file via <code>$ qmake -spec win32-msvc2010 -tp vc</code>
 and open it in VS.
 
 ##### [TODO](TODO.md)s, known bugs, planned features

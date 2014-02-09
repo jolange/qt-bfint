@@ -28,8 +28,10 @@ private slots:
    void slotExecute();
    void slotPut(QChar);
    
+   void slotOpenFile(QString filename);
    void slotOpenFileDialog();
    void slotSaveFileDialog();
+   void slotLoadExample();
    void slotShowAboutDialog();
 };
 

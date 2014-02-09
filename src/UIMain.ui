@@ -230,6 +230,7 @@ You will be prompted for input again if the input queue is empty.</string>
     </property>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
+    <addaction name="actionLoadEx"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -308,6 +309,11 @@ You will be prompted for input again if the input queue is empty.</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionLoadEx">
+   <property name="text">
+    <string>Load Example</string>
    </property>
   </action>
  </widget>
