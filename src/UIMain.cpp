@@ -19,8 +19,7 @@ UIMain::UIMain():
    buildExamplesMenu();
 
    ui.statusbar->showMessage("Ready");
-   QString testSequence = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
-   ui.tbInput->setPlainText(testSequence);
+   slotOpenFile(":/bf-examples/hello.bf");
 
    connect(ui.buttonExecute, SIGNAL(clicked()),
            this,             SLOT(slotExecute()));

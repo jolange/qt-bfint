@@ -1,18 +1,17 @@
- ++++++++++
- [
-  >+++++++>++++++++++>+++>+<<<<-
- ]                       Schleife zur Vorbereitung der Textausgabe
- >++.                    Ausgabe von 'H'
- >+.                     Ausgabe von 'e'
- +++++++.                'l'
- .                       'l'
- +++.                    'o'
- >++.                    Leerzeichen
- <<+++++++++++++++.      'W'
- >.                      'o'
- +++.                    'r'
- ------.                 'l'
- --------.               'd'
- >+.                     '!'
- >.                      Zeilenvorschub
- +++.                    Wagenrücklauf
+# hello world example
+# preparation loop
+++++++++++[>+++++++>++++++++++>+++>+<<<<-]
+# output
+>++.                    'H'
+>+.                     'e'
++++++++.                'l'
+.                       'l'
++++.                    'o'
+>++.                    ' '
+<<+++++++++++++++.      'W'
+>.                      'o'
++++.                    'r'
+------.                 'l'
+--------.               'd'
+>+.                     '!'
+

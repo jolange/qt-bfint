@@ -3,7 +3,6 @@
 - error checks (range checks, parsing/check brackets "online")
 - VS-Project sets target name to qt-bfint<version>.exe but linker creates qt-bfint.exe
 - doxygen
-- monospace font
 - cancel in file-dialogs
 - about-resource
 
