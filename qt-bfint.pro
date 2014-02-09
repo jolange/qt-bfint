@@ -24,4 +24,4 @@ HEADERS += src/BFInterpreter.hpp \
 SOURCES += src/main.cpp          \
            src/BFInterpreter.cpp \
            src/UIMain.cpp
-RESOURCES += qt-bfint.qrc
+RESOURCES += resources/qt-bfint.qrc

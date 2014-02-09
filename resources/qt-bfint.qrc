@@ -2,6 +2,8 @@
 <qresource>
    <file>bf-examples/hello.bf</file>
    <file>bf-examples/echo.bf</file>
-   <file>resources/aboutText.html</file>
+</qresource>
+<qresource prefix="/resources">
+   <file>aboutText.html</file>
 </qresource>
 </RCC>
