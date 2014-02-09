@@ -22,7 +22,10 @@ public:
    virtual ~UIMain();
 private:
    Ui::UIMain ui;
+   QMenu m_menuExamples;
    BFInterpreter m_bfInt;
+   
+   void buildExamplesMenu();
    
 private slots:
    void slotExecute();
@@ -31,7 +34,7 @@ private slots:
    void slotOpenFile(QString filename);
    void slotOpenFileDialog();
    void slotSaveFileDialog();
-   void slotLoadExample();
+   void slotLoadExample(QAction* actionExample);
    void slotShowAboutDialog();
 };
 

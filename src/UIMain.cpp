@@ -12,12 +12,14 @@
 namespace qt_bfint{
 
 UIMain::UIMain():
-   QMainWindow()
+   QMainWindow(),
+   m_menuExamples("Load Example...")
 {
    ui.setupUi(this);
+   buildExamplesMenu();
+
    ui.statusbar->showMessage("Ready");
    QString testSequence = "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.";
-   //QString testSequence = "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.";
    ui.tbInput->setPlainText(testSequence);
 
    connect(ui.buttonExecute, SIGNAL(clicked()),
@@ -45,13 +47,26 @@ UIMain::UIMain():
            this,             SLOT(slotOpenFileDialog()));
    connect(ui.actionSave,    SIGNAL(activated()), 
            this,             SLOT(slotSaveFileDialog()));
-   connect(ui.actionLoadEx,  SIGNAL(activated()), 
-           this,             SLOT(slotLoadExample()));
    connect(ui.actionAbout,   SIGNAL(activated()), 
            this,             SLOT(slotShowAboutDialog()));
 }
 
 UIMain::~UIMain(){}
+
+void UIMain::buildExamplesMenu()
+{
+   // can't access separator from ui-file, so add one manually here...
+   QAction* separator = ui.menuFile->insertSeparator(ui.actionQuit);
+   ui.menuFile->insertMenu(separator,&m_menuExamples);
+   // get all examples from resource dir
+   QDir dir(":/bf-examples");
+   QStringList slExamples = dir.entryList(QStringList("*.bf"));
+   foreach (QString sExample, slExamples){
+      m_menuExamples.addAction(sExample);
+   }
+   connect(&m_menuExamples, SIGNAL(triggered(QAction*)), 
+           this,            SLOT(slotLoadExample(QAction*)));
+}
 
 void UIMain::slotExecute()
 {
@@ -105,9 +120,9 @@ void UIMain::slotSaveFileDialog()
    ui.statusbar->showMessage("Saved File \"" + fn + "\". Ready");
 }
 
-void UIMain::slotLoadExample()
+void UIMain::slotLoadExample(QAction* actionExample)
 {
-   slotOpenFile(":bf-examples/hello.bf");
+   slotOpenFile(":/bf-examples/"+actionExample->text());
 }
 
 void UIMain::slotShowAboutDialog()

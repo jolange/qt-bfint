@@ -231,7 +231,6 @@ You will be prompted for input again if the input queue is empty.</string>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionLoadEx"/>
-    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
