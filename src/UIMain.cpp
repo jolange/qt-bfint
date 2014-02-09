@@ -126,11 +126,13 @@ void UIMain::slotLoadExample(QAction* actionExample)
 
 void UIMain::slotShowAboutDialog()
 {
-   QString text = QString()
-                + "<b>qt-bfint</b> Version " + PROJECTVERSION + " (" + __DATE__ + ")<br>"
-                + "Qt4 based Brainfuck Interpreter GUI<br><br>Copyright 2014 Johannes Lange,<br>"
-                + "for License see LICENSE file shipped with the code<br>or visit<br><br>"
-                + "<a href='https://github.com/johannes-lange/qt-bfint'>https://github.com/johannes-lange/qt-bfint</a>";
+   QString text = "<b>qt-bfint</b> by Johannes Lange"; // backup text
+   QFile aboutFile(":/resources/aboutText.html");
+   if(aboutFile.open(QIODevice::ReadOnly)){
+      text = aboutFile.readAll();
+      text = text.arg( PROJECTVERSION ).arg( __DATE__ );
+      aboutFile.close();
+   }
    QMessageBox::about(this, QString("About qt-brainf Version ") + PROJECTVERSION, text);
 }
 
