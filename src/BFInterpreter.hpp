@@ -9,6 +9,7 @@ namespace qt_bfint
 {
    class BFInterpreter; 
    enum  EmptyInputHandle {breakProgram = 0, keepCell = 1, zeroCell = 2};
+   enum  InterruptReason  {exitedNormally = 0, genericError, closeBracketMissing, inputInterrupt, maxLoopsExceed};
 }
 
 
@@ -30,7 +31,7 @@ public:
    /*! actual interpreting
     *  \returns false if interrupted
     */
-   bool interpret();
+   InterruptReason interpret();
 
 private:
    static const int m_iNumberOfCells = 5000;
@@ -39,7 +40,7 @@ private:
    QString          m_bfSequence;
    QString          m_sInputQueue;
 
-   bool             m_bInterrupted;
+   InterruptReason  m_interruptReason;
    bool             m_bQueueInputs;
    int              m_iMaxLoopIterations;
    EmptyInputHandle m_emtpyInputHandle;

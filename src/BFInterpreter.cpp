@@ -9,7 +9,7 @@ namespace qt_bfint{
 BFInterpreter::BFInterpreter(QString bfSequence):
    QObject(),
    m_bfSequence(bfSequence),
-   m_bInterrupted(false),
+   m_interruptReason(exitedNormally),
    m_bQueueInputs(true),
    m_iMaxLoopIterations(2000),
    m_emtpyInputHandle(breakProgram)
@@ -25,25 +25,25 @@ BFInterpreter& BFInterpreter::operator=(const BFInterpreter& that)
    m_vCells       = that.m_vCells;
    m_iPosition    = that.m_iPosition;
    m_bfSequence   = that.m_bfSequence;
-   m_bInterrupted = that.m_bInterrupted;
    m_bQueueInputs = that.m_bQueueInputs;
    m_sInputQueue  = that.m_sInputQueue;
+   m_interruptReason    = that.m_interruptReason;
    m_iMaxLoopIterations = that.m_iMaxLoopIterations;
    m_emtpyInputHandle   = that.m_emtpyInputHandle;
    return *this;
 }
 
-bool BFInterpreter::interpret()
+InterruptReason BFInterpreter::interpret()
 {
    m_sInputQueue = "";
    interpret(m_bfSequence);
-   return m_bInterrupted;
+   return m_interruptReason;
 }
 
 void BFInterpreter::interpret(QString bfSequence)
 {
    QString::const_iterator it = bfSequence.constBegin();
-   for(; it != bfSequence.constEnd() && !m_bInterrupted; it++){
+   for(; it != bfSequence.constEnd() && !m_interruptReason; it++){
       switch (it->toAscii()){
          case '+': incrementValue();   break;
          case '-': decrementValue();   break;
@@ -52,7 +52,7 @@ void BFInterpreter::interpret(QString bfSequence)
          case '.': put();              break;
          case ',': get();              break;
          case '[': loop(bfSequence,it);break;
-         case ']': m_bInterrupted=true;break; // TODO error!
+         case ']': m_interruptReason=closeBracketMissing;break;
          default : break;
       }
    }
@@ -71,11 +71,11 @@ void BFInterpreter::loop(QString bfSequence, QString::const_iterator &itLoopStar
    }
 
    int iLoopCount = 0;
-   while (cellCondition() && !m_bInterrupted){
+   while (cellCondition() && !m_interruptReason){
       interpret(loopSequence);
       iLoopCount++;
       if (iLoopCount >= m_iMaxLoopIterations)
-         m_bInterrupted = true;
+         m_interruptReason = maxLoopsExceed;
    }
 }
 
@@ -104,14 +104,14 @@ void BFInterpreter::get()
             }
          }else{
             if (m_emtpyInputHandle == breakProgram){
-               m_bInterrupted = true;
+               m_interruptReason = inputInterrupt;
             }else if (m_emtpyInputHandle == zeroCell){
                m_vCells[m_iPosition] = 0;
             } // else: (m_emtpyInputHandle == keep Cell)
                // do nothing.
          }
       }else{
-         m_bInterrupted = true;
+         m_interruptReason = inputInterrupt;
       }
    }
 }

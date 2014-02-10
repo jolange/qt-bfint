@@ -75,9 +75,18 @@ void UIMain::slotExecute()
    m_bfInt.slotQueueInputs(ui.cbQueueInputs->checkState());
    m_bfInt.slotMaxLoopIterations(ui.sbMaxLoopIter->value());
    m_bfInt.slotEmptyInputHandle(ui.cbEIH->currentIndex());
-   bool interrupted = m_bfInt.interpret();
-   if (!interrupted) ui.statusbar->showMessage("Execution done. Ready");
-   else              ui.statusbar->showMessage("Execution interrupted. Ready");
+   //bool interrupted = m_bfInt.interpret();
+   //if (!interrupted) ui.statusbar->showMessage("Execution done. Ready");
+   //else              ui.statusbar->showMessage("Execution interrupted. Ready");
+   InterruptReason interrupt = m_bfInt.interpret();
+   switch (interrupt){
+      case exitedNormally     : ui.statusbar->showMessage("Execution done. Ready");                  break;
+      case closeBracketMissing: ui.statusbar->showMessage("Close bracket is missing. Ready");        break;
+      case inputInterrupt     : ui.statusbar->showMessage("Input interrupt. Ready");                 break;
+      case maxLoopsExceed     : ui.statusbar->showMessage("Maximum number of Loops exceeded. Ready");break;
+      case genericError       : ui.statusbar->showMessage("Something went wrong. Ready");            break;  
+      default                 : ui.statusbar->showMessage("Something went wrong. Ready");            break;
+   }
 }
 
 void UIMain::slotPut(QChar c)
