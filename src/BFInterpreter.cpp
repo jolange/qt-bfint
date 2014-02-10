@@ -45,14 +45,14 @@ void BFInterpreter::interpret(QString bfSequence)
    QString::const_iterator it = bfSequence.constBegin();
    for(; it != bfSequence.constEnd() && !m_interruptReason; it++){
       switch (it->toAscii()){
-         case '+': incrementValue();   break;
-         case '-': decrementValue();   break;
-         case '>': incrementPointer(); break;
-         case '<': decrementPointer(); break;
-         case '.': put();              break;
-         case ',': get();              break;
-         case '[': loop(bfSequence,it);break;
-         case ']': m_interruptReason=closeBracketMissing;break;
+         case '+': incrementValue();                    break;
+         case '-': decrementValue();                    break;
+         case '>': incrementPointer();                  break;
+         case '<': decrementPointer();                  break;
+         case '.': put();                               break;
+         case ',': get();                               break;
+         case '[': loop(bfSequence,it);                 break;
+         case ']': m_interruptReason=openBracketMissing;break;
          default : break;
       }
    }
@@ -69,7 +69,9 @@ void BFInterpreter::loop(QString bfSequence, QString::const_iterator &itLoopStar
       if(c == ']') break;
       loopSequence += c;
    }
-
+   if (c != ']') // loop ended without finding close bracket
+      m_interruptReason = closeBracketMissing;
+   
    int iLoopCount = 0;
    while (cellCondition() && !m_interruptReason){
       interpret(loopSequence);

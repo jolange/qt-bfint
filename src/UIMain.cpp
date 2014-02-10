@@ -80,12 +80,13 @@ void UIMain::slotExecute()
    //else              ui.statusbar->showMessage("Execution interrupted. Ready");
    InterruptReason interrupt = m_bfInt.interpret();
    switch (interrupt){
-      case exitedNormally     : ui.statusbar->showMessage("Execution done. Ready");                  break;
-      case closeBracketMissing: ui.statusbar->showMessage("Close bracket is missing. Ready");        break;
-      case inputInterrupt     : ui.statusbar->showMessage("Input interrupt. Ready");                 break;
-      case maxLoopsExceed     : ui.statusbar->showMessage("Maximum number of Loops exceeded. Ready");break;
-      case genericError       : ui.statusbar->showMessage("Something went wrong. Ready");            break;  
-      default                 : ui.statusbar->showMessage("Something went wrong. Ready");            break;
+      case exitedNormally     : ui.statusbar->showMessage("Execution done. Ready");                         break;
+      case openBracketMissing : ui.statusbar->showMessage("Error: Open bracket is missing. Ready");         break;
+      case closeBracketMissing: ui.statusbar->showMessage("Error: Close bracket is missing. Ready");        break;
+      case inputInterrupt     : ui.statusbar->showMessage("Error: Input interrupt. Ready");                 break;
+      case maxLoopsExceed     : ui.statusbar->showMessage("Error: Maximum number of Loops exceeded. Ready");break;
+      case genericError       : ui.statusbar->showMessage("Error: Something went wrong. Ready");            break;  
+      default                 : ui.statusbar->showMessage("Error: Something went wrong. Ready");            break;
    }
 }
 

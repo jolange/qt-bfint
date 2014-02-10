@@ -1,13 +1,11 @@
 #### TODO
-- error checks (range checks, parsing/check brackets "online")
+- range checks
 - VS-Project sets target name to qt-bfint<version>.exe but linker creates qt-bfint.exe
 - doxygen
 - cancel in file-dialogs
 
 
 #### Bugs
-- "[" does many strange things...
-- no closing brace => loop-sequence to end of file
 - GOL does not work (how are multi-sign inputs handled there? writing to next cells?)
 
 #### Planned Features

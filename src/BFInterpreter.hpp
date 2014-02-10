@@ -9,7 +9,7 @@ namespace qt_bfint
 {
    class BFInterpreter; 
    enum  EmptyInputHandle {breakProgram = 0, keepCell = 1, zeroCell = 2};
-   enum  InterruptReason  {exitedNormally = 0, genericError, closeBracketMissing, inputInterrupt, maxLoopsExceed};
+   enum  InterruptReason  {exitedNormally = 0, genericError, openBracketMissing, closeBracketMissing, inputInterrupt, maxLoopsExceed};
 }
 
 
