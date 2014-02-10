@@ -16,6 +16,10 @@ UIMain::UIMain():
    m_menuExamples("Load Example...")
 {
    ui.setupUi(this);
+   QFont fontMono("Monospace");
+   fontMono.setStyleHint(QFont::TypeWriter); // for windows
+   ui.tbInput ->setFont(fontMono);
+   ui.tbOutput->setFont(fontMono);
    buildExamplesMenu();
 
    ui.statusbar->showMessage("Ready");
