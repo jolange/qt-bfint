@@ -18,7 +18,7 @@ $ nmake release
 </pre></code>
  * static build (static build of Qt necessary): add <code>CONFIG += static</code> to qt-bfint.pro, then repeat step above
  * with Visual Studio (2010) IDE: Generate .vcproj-file via <code>$ qmake -spec win32-msvc2010 -tp vc</code>
-   and open it in VS. (Note: VS-Project sets target name to qt-bfint<version>.exe (<- change this is in VS manually)
+   and open it in VS. (Note: VS-Project sets target name to qt-bfintVERSION.exe (<- change this is in VS manually)
    but linker creates qt-bfint.exe)
  * or just get precompiled static version
 
