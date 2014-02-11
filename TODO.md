@@ -6,7 +6,7 @@
 
 #### Bugs
 - GOL does not work (how are multi-sign inputs handled there? writing to next cells?)
-- VS-Project sets target name to qt-bfint<version>.exe (<- change this is in VS manually) but linker creates qt-bfint.exe
+- VS-Project sets target name to qt-bfintVERSION.exe (<- change this is in VS manually) but linker creates qt-bfint.exe
 - appending [.] to hello world: maxloops=10 no ouput, maxloops>=11 works
 
 #### Planned Features

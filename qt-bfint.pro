@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET   = qt-bfint
-VERSION  = 0.1b
+VERSION  = 0.1
 
 # for access in code
 win32:DEFINES += PROJECTVERSION=\"$$VERSION\" 
