@@ -20,10 +20,10 @@ $ nmake release
  * with Visual Studio (2010) IDE: Generate .vcproj-file via <code>$ qmake -spec win32-msvc2010 -tp vc</code>
    and open it in VS. (Note: VS-Project sets target name to qt-bfintVERSION.exe (<- change this is in VS manually)
    but linker creates qt-bfint.exe)
- * or just get precompiled static version
+ * or just get precompiled [binary](https://github.com/johannes-lange/qt-bfint/releases/download/v0.1/qt-bfint_win-binary.zip)
 
 ##### [TODO](TODO.md)s, known bugs, planned features
 
-##### Release notes:
+##### [Release](https://github.com/johannes-lange/qt-bfint/releases) notes:
 - development Version 0.2b
-- 2014-02-11 Version 0.1: first released version
+- 2014-02-11 [Version 0.1](https://github.com/johannes-lange/qt-bfint/releases/tag/v0.1): first released version
