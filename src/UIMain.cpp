@@ -115,7 +115,10 @@ void UIMain::slotOpenFileDialog()
    ui.statusbar->showMessage("Opening");
    QString fn = QFileDialog::getOpenFileName(this, tr("Open File"),"./bf-examples",
                                              tr("BF Files (*.bf);;All Files (*)"));
-   slotOpenFile(fn);
+   if (fn.isEmpty())
+      ui.statusbar->showMessage("Opening cancelled. Ready");
+   else
+      slotOpenFile(fn);
 }
 
 void UIMain::slotSaveFileDialog()
@@ -123,14 +126,18 @@ void UIMain::slotSaveFileDialog()
    ui.statusbar->showMessage("Saving");
    QString fn = QFileDialog::getSaveFileName(this, tr("Save File"),"./bf-examples",
                                              tr("BF Files (*.bf);;All Files (*)"));
-   QFile file(fn);
-   if (file.open(QIODevice::WriteOnly)){
-      QString content = ui.tbInput->toPlainText();
-      QTextStream stream(&file);
-      stream << content;
-      file.close();
+   if (fn.isEmpty()){
+      ui.statusbar->showMessage("Saving cancelled. Ready");
+   }else{
+      QFile file(fn);
+      if (file.open(QIODevice::WriteOnly)){
+         QString content = ui.tbInput->toPlainText();
+         QTextStream stream(&file);
+         stream << content;
+         file.close();
+      }
+      ui.statusbar->showMessage("Saved File \"" + fn + "\". Ready");
    }
-   ui.statusbar->showMessage("Saved File \"" + fn + "\". Ready");
 }
 
 void UIMain::slotLoadExample(QAction* actionExample)
