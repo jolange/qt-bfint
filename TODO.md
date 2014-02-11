@@ -1,5 +1,7 @@
-#### TODO
-- range checks
+### TODO
+- static build windows
+  * download in release
+  * link in readme
 - http://stackoverflow.com/questions/19013696/how-to-generate-a-visual-studio-project-file-when-i-build-my-qmake-project
 
 #### Bugs
@@ -10,8 +12,7 @@
 #### Planned Features
 - undo/redo in menu: use the actions of QTextBrowser
 - save file: automatically add extension
+- choose cell/tape size in UI
 - output: show inputs? different colouring (html)? http://qt-project.org/doc/qt-4.8/richtext-syntaxhighlighter.html
 - doxygen
-- static build windows
-  * download in release
-  * link in readme
+

@@ -118,11 +118,29 @@ void BFInterpreter::get()
    }
 }
 
-void BFInterpreter::incrementPointer() { m_iPosition++; }
-void BFInterpreter::decrementPointer() { m_iPosition--; }
-void BFInterpreter::incrementValue()   { m_vCells[m_iPosition]++; }
-void BFInterpreter::decrementValue()   { m_vCells[m_iPosition]--; }
-bool BFInterpreter::cellCondition()    { return m_vCells[m_iPosition] > 0; }
+void BFInterpreter::incrementPointer(){
+   m_iPosition++;
+   if (m_iPosition >= m_iNumberOfCells)
+      m_interruptReason = ptrOverflow;
+}
+void BFInterpreter::decrementPointer()
+{
+   m_iPosition--;
+   if (m_iPosition < 0)
+      m_interruptReason = ptrUnderflow;
+}
+void BFInterpreter::incrementValue()
+{
+   m_vCells[m_iPosition]++;
+   if (m_vCells[m_iPosition] > 255)
+      m_interruptReason = cellOverflow;
+}
+void BFInterpreter::decrementValue(){
+   m_vCells[m_iPosition]--;
+   if (m_vCells[m_iPosition] < 0)
+      m_interruptReason = cellUnderflow;
+}
+bool BFInterpreter::cellCondition() { return m_vCells[m_iPosition] > 0; }
 
 // // // //
 // SLOTS //

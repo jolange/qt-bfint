@@ -79,17 +79,19 @@ void UIMain::slotExecute()
    m_bfInt.slotQueueInputs(ui.cbQueueInputs->checkState());
    m_bfInt.slotMaxLoopIterations(ui.sbMaxLoopIter->value());
    m_bfInt.slotEmptyInputHandle(ui.cbEIH->currentIndex());
-   //bool interrupted = m_bfInt.interpret();
-   //if (!interrupted) ui.statusbar->showMessage("Execution done. Ready");
-   //else              ui.statusbar->showMessage("Execution interrupted. Ready");
+
    InterruptReason interrupt = m_bfInt.interpret();
    switch (interrupt){
       case exitedNormally     : ui.statusbar->showMessage("Execution done. Ready");                         break;
       case openBracketMissing : ui.statusbar->showMessage("Error: Open bracket is missing. Ready");         break;
       case closeBracketMissing: ui.statusbar->showMessage("Error: Close bracket is missing. Ready");        break;
+      case cellOverflow       : ui.statusbar->showMessage("Error: Cell overflow. Ready");                   break;
+      case cellUnderflow      : ui.statusbar->showMessage("Error: Cell underflow. Ready");                  break;
+      case ptrOverflow        : ui.statusbar->showMessage("Error: Pointer overflow. Ready");                break;
+      case ptrUnderflow       : ui.statusbar->showMessage("Error: Pointer underflow. Ready");               break;
       case inputInterrupt     : ui.statusbar->showMessage("Error: Input interrupt. Ready");                 break;
       case maxLoopsExceed     : ui.statusbar->showMessage("Error: Maximum number of Loops exceeded. Ready");break;
-      case genericError       : ui.statusbar->showMessage("Error: Something went wrong. Ready");            break;  
+      case genericError       : ui.statusbar->showMessage("Error: Something went wrong. Ready");            break;
       default                 : ui.statusbar->showMessage("Error: Something went wrong. Ready");            break;
    }
 }
