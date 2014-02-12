@@ -1,10 +1,9 @@
 TEMPLATE = app
 TARGET   = qt-bfint
-VERSION  = 0.1
+VERSION  = 0.2b
 
 # for access in code
-win32:DEFINES += PROJECTVERSION=\"$$VERSION\" 
-unix: DEFINES += PROJECTVERSION=\\\"$$VERSION\\\" 
+DEFINES += PROJECTVERSION=$$VERSION
 
 # https://qt-project.org/doc/qt-5/qmake-variable-reference.html
 DESTDIR = bin
@@ -14,7 +13,7 @@ MOC_DIR = $${BUILDDIR}
 RCC_DIR = $${BUILDDIR}
 UI_DIR = $${BUILDDIR}
 
-DEPENDPATH += src
+DEPENDPATH += src 
 INCLUDEPATH +=
 
 # Input

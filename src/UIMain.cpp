@@ -150,13 +150,18 @@ void UIMain::slotLoadExample(QAction* actionExample)
 void UIMain::slotShowAboutDialog()
 {
    QString text = "<b>qt-bfint</b> by Johannes Lange"; // backup text
+   #define STRING1(x) #x
+   #define STRING(x) STRING1(x)
+   QString version( STRING(PROJECTVERSION) );
+   #undef  STRING
+   #undef  STRING1
    QFile aboutFile(":/resources/aboutText.html");
    if(aboutFile.open(QIODevice::ReadOnly)){
       text = aboutFile.readAll();
-      text = text.arg( PROJECTVERSION ).arg( __DATE__ );
+      text = text.arg(version).arg( __DATE__ );
       aboutFile.close();
    }
-   QMessageBox::about(this, QString("About qt-brainf Version ") + PROJECTVERSION, text);
+   QMessageBox::about(this, QString("About qt-brainf"), text);
 }
 
 
