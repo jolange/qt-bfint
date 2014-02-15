@@ -1,6 +1,5 @@
 ### TODO
 - http://stackoverflow.com/questions/19013696/how-to-generate-a-visual-studio-project-file-when-i-build-my-qmake-project
-- compiling windows command line: unix-syntax for PROJECTVERSION
 
 #### Bugs
 - GOL does not work (how are multi-sign inputs handled there? writing to next cells?)
