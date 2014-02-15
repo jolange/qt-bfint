@@ -63,10 +63,19 @@ void BFInterpreter::loop(QString bfSequence, QString::const_iterator &itLoopStar
    QString loopSequence;
    QString::const_iterator &it = itLoopStart;
    it++;
+   int iOpenBrackets = 0;
    QChar c;
    for(; it != bfSequence.constEnd(); it++){
       c = it->toAscii();
-      if(c == ']') break;
+      if(c == '['){
+         iOpenBrackets++;
+      }else if(c == ']'){
+         if (iOpenBrackets == 0){
+            break;
+         }else{
+            iOpenBrackets--;
+         }
+      }
       loopSequence += c;
    }
    if (c != ']') // loop ended without finding close bracket
