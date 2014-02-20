@@ -75,7 +75,7 @@ void UIMain::slotExecute()
 {
    ui.statusbar->showMessage("Executing...");
    ui.tbOutput->clear();
-   m_bfInt = BFInterpreter(ui.tbInput->toPlainText());
+   m_bfInt = BFInterpreter(ui.tbInput->toPlainText(),ui.sbTapeSize->value());
    m_bfInt.slotQueueInputs(ui.cbQueueInputs->checkState());
    m_bfInt.slotMaxLoopIterations(ui.sbMaxLoopIter->value());
    m_bfInt.slotEmptyInputHandle(ui.cbEIH->currentIndex());

@@ -6,8 +6,9 @@
 
 namespace qt_bfint{
 
-BFInterpreter::BFInterpreter(QString bfSequence):
+BFInterpreter::BFInterpreter(QString bfSequence, int iTapeSize):
    QObject(),
+   m_iNumberOfCells(iTapeSize),
    m_bfSequence(bfSequence),
    m_interruptReason(exitedNormally),
    m_bQueueInputs(true),
@@ -22,11 +23,12 @@ BFInterpreter::BFInterpreter(QString bfSequence):
 BFInterpreter& BFInterpreter::operator=(const BFInterpreter& that)
 {
    // init cells
-   m_vCells       = that.m_vCells;
-   m_iPosition    = that.m_iPosition;
-   m_bfSequence   = that.m_bfSequence;
-   m_bQueueInputs = that.m_bQueueInputs;
-   m_sInputQueue  = that.m_sInputQueue;
+   m_vCells         = that.m_vCells;
+   m_iPosition      = that.m_iPosition;
+   m_iNumberOfCells = that.m_iNumberOfCells;
+   m_bfSequence     = that.m_bfSequence;
+   m_bQueueInputs   = that.m_bQueueInputs;
+   m_sInputQueue    = that.m_sInputQueue;
    m_interruptReason    = that.m_interruptReason;
    m_iMaxLoopIterations = that.m_iMaxLoopIterations;
    m_emtpyInputHandle   = that.m_emtpyInputHandle;

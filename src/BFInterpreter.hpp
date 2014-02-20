@@ -29,7 +29,7 @@ public:
    /*! constructor
     *  \param bfSequence sequence to interpret
     */
-   BFInterpreter(QString bfSequence="");
+   BFInterpreter(QString bfSequence="", int iTapeSize = 5000);
    //! copy-constructor
    BFInterpreter& operator=(const BFInterpreter& that);
 
@@ -39,7 +39,7 @@ public:
    InterruptReason interpret();
 
 private:
-   static const int m_iNumberOfCells = 5000;
+   int              m_iNumberOfCells;
    QVector<int>     m_vCells;
    int              m_iPosition;
    QString          m_bfSequence;
