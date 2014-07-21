@@ -4,6 +4,8 @@
 Copyright 2014 Johannes Lange,
 for **License** see [LICENSE file](LICENSE)
 
+![Screenshot](https://raw.githubusercontent.com/johannes-lange/qt-bfint/master/resources/qt-bfint.png)
+
 ##### Building
 - **Prerequisites**: [Qt4](https://qt-project.org/)
 - **Linux**: In the base-path (where the qt-bfint.pro is located):

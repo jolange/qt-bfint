@@ -8,7 +8,7 @@
 #### Planned Features
 - undo/redo in menu: use the actions of QTextBrowser
 - save file: automatically add extension
-- choose cell/tape size in UI
+- choose cell size in UI
 - output: show inputs? different colouring (html)? http://qt-project.org/doc/qt-4.8/richtext-syntaxhighlighter.html
 - doxygen
 
